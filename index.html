@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CloudConsulting-AWS</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  header {
+    background-color: #0066cc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  h1 {
+    margin: 0;
+  }
+  .container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  .card {
+    background: white;
+    width: 28%;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+  .card:hover {
+    transform: scale(1.05);
+  }
+  .content {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+  }
+  section {
+    max-width: 800px;
+    margin: auto;
+  }
+  footer {
+    background-color: #333;
+    color: #eee;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  /* Kontaktformular Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    margin-top: 10px;
+  }
+  input, textarea {
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005bb5;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CloudConsulting-AWS</h1>
+  <p>Ihr Partner für AWS Cloud Lösungen</p>
+</header>
+
+
+<!-- Dies ist die KAchel für Solution Architekt -->
+<div class="container">
+  <div class="card" onclick="window.open('Architect.html', '_self')">
+    <h3>AWS Solution Architect</h3>
+
+<div style="display: flex; align-items: center; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+  <img src="webpage\Bilder\cer Arch.jpg " alt="Bildbeschreibung" style="width: 150px; height: auto; margin-right: 20px; border-radius: 8px;">
+  <div>
+    <h3>Gute Planung</h3>
+    <p>Als Solution Architect plane und implementiere ich skalierbare und sichere AWS Cloud-Infrastrukturen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
+  </div>
+</div>
+
+
+    <div id="content1" class="content">
+      <p>Als Solution Architect plane und implementiere ich skalierbare und sichere AWS Cloud-Infrastrukturen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
+    </div>
+  </div>
+
+<!-- Dies ist die KAchel für Designer -->
+  <div class="card" onclick="window.open('Designer.html', '_self')">
+    <h3>AWS Solution Designer</h3>
+<div style="display: flex; align-items: center; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+  <img src="webpage\Bilder\cert Dev.jpg " alt="Bildbeschreibung" style="width: 150px; height: auto; margin-right: 20px; border-radius: 8px;">
+  <div>
+    <h3>Solide umgesetzt</h3>
+    <p>Ich konzipiere innovative AWS-Lösungen, die Effizienz und Kostenoptimierung maximieren, inklusive Architektur-Design und Ressourcenplanung.</p>
+  </div>
+</div>
+
+
+    <div id="content2" class="content">
+      <p>Ich konzipiere innovative AWS-Lösungen, die Effizienz und Kostenoptimierung maximieren, inklusive Architektur-Design und Ressourcenplanung.</p>
+    </div>
+  </div>
+
+<!-- Dies ist die KAchel für AI-->
+  <div class="card" onclick="window.open('AI.html', '_self')">
+    <h3>AWS Artificial Intelligence</h3>
+
+<div style="display: flex; align-items: center; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+  <img src="webpage\Bilder\cer Arch.jpg " alt="Bildbeschreibung" style="width: 150px; height: auto; margin-right: 20px; border-radius: 8px;">
+  <div>
+    <h3>Auch mit KI</h3>
+    <p>Ich Implementiere KI-basierte Lösungen auf AWS, inklusive Machine Learning, Chatbots und Data Analytics für Ihre geschäftlichen Anforderungen.</p>
+  </div>
+</div>
+
+  
+
+    <div id="content3" class="content">
+      <p>Implementiere KI-basierte Lösungen auf AWS, inklusive Machine Learning, Chatbots und Data Analytics für Ihre geschäftlichen Anforderungen.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <h2>Kontakt</h2>
+  <form action="mailto:deine.email@beispiel.com" method="post" enctype="text/plain">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="email">E-Mail:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="message">Nachricht:</label>
+    <textarea id="message" name="message" rows="4" required></textarea>
+
+    <button type="submit">Absenden</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 CloudConsulting-AWS |<a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a> </p>
+</footer>
+
+<script>
+function toggleContent
+
