@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Analyse in AWS</title>
+<title>Analyse aus S3</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -35,11 +35,12 @@
     margin-top: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    width: 100%;
     max-width: 400px;
+    width: 100%;
   }
   h2 {
     margin-top: 0;
+    margin-bottom: 10px;
   }
   input[type="file"] {
     width: 100%;
@@ -68,44 +69,32 @@
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    overflow-wrap: break-word;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>AWS Analyse</h1>
-  <p>Analyse-Ergebnisse anzeigen</p>
+  <h1>Analyse aus S3</h1>
+  <p>Analyse-Ergebnisse laden und anzeigen</p>
 </header>
 
 <main>
-  <h2>Hier dein Text hochladen</h2>
-  <form action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="key" value="${filename}">
-    <input type="hidden" name="x-amz-acl" value="public-read">
-    <input type="file" name="file" accept=".txt" required>
-    <button type="submit">Hochladen</button>
-  </form>
-  
-  <button style="margin-top:20px;" onclick="ladeAnalyse()">Analyse-Ergebnisse laden</button>
-  
+  <!-- Button zum laden der Analyse-Ergebnisse -->
+  <button onclick="ladeAnalyse()">Analyse aus S3 laden</button>
+
+  <!-- Bereich für die Ergebnisse -->
   <div id="analysisResults">Hier erscheinen die Analyse-Ergebnisse</div>
 </main>
 
 <script>
-// API-URL anpassen
-const apiUrl = "https://d25ov4z9ej.execute-api.eu-central-1.amazonaws.com/prod/results"; 
+// URL deiner Ergebnisdatei im S3 (keine README- oder Index-URL, sondern direkt auf die JSON-Datei)
+const s3Url = "https://buckethochladentextifles.s3.eu-central-1.amazonaws.com/ergebnisse/ergebnis_20251104_170204.json";
 
 function ladeAnalyse() {
-  // Hier die URL der Datei
-  const s3Url = "https://buckethochladentextifles.s3.eu-central-1.amazonaws.com/ergebnisse/ergebnis_20251104_170204.json"; // Beispiel
-
   fetch(s3Url)
     .then(res => {
-      if (!res.ok) {
-        throw new Error("Fehler beim Laden der Datei");
-      }
+      if (!res.ok) throw new Error('Fehler beim Laden der Datei');
       return res.json();
     })
     .then(data => {
@@ -116,19 +105,22 @@ function ladeAnalyse() {
         <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
         <p>Neutral: ${(data.SentimentScores.Neutral * 100).toFixed(2)}%</p>
         <h4>Entities erkannt:</h4>
-        <ul>${data.Entities.length ? data.Entities.map(e => `<li>${e.Type}: ${e.Text}</li>`).join('') : '<li>Keine Entities erkannt</li>'}</ul>
+        <ul>
+          ${data.Entities.length ? data.Entities.map(e => `<li>${e.Type}: ${e.Text}</li>`).join('') : '<li>Keine Entities erkannt</li>'}
+        </ul>
       `;
     })
-    .catch(err => {
-      console.error('Fehler:', err);
-      document.getElementById('analysisResults').innerHTML = '<p>Fehler beim Laden!</p>';
+    .catch(error => {
+      console.error('Fehler:', error);
+      document.getElementById('analysisResults').innerHTML = '<p>Analyse konnten nicht geladen werden.</p>';
     });
 }
-
 </script>
 
 </body>
 </html>
+
+
 
 
 
