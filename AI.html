@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     padding: 20px;
   }
   form {
@@ -109,7 +109,7 @@
 
 <script>
 function fetchAnalysis() {
-  const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test"; // hier deine API-URL
+  const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test"; // -> deine tatsächliche API-URL hier anpassen
 
   fetch(apiUrl)
     .then(res => res.json())
@@ -119,4 +119,5 @@ function fetchAnalysis() {
         <p>Sentiment: ${data.Sentiment}</p>
         <p>Positiv: ${(data.SentimentScores.Positive * 100).toFixed(2)}%</p>
         <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
-        <p>Neutral: ${(data.Sentiment
+        <p>Neutral: ${(data.Sent
+
