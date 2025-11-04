@@ -10,6 +10,9 @@
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
   header {
     background-color: #0066cc;
@@ -20,32 +23,13 @@
   h1 {
     margin: 0;
   }
-  .container {
+  main {
+    flex-grow: 1;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
-  }
-  .card {
-    background: white;
-    width: 28%;
-    padding: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-    border-radius: 8px;
-    transition: transform 0.2s;
-  }
-  .card:hover {
-    transform: scale(1.05);
-  }
-  .content {
-    display: none;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #ccc;
-  }
-  section {
-    max-width: 800px;
-    margin: auto;
   }
   footer {
     background-color: #333;
@@ -54,22 +38,23 @@
     padding: 10px;
     margin-top: 20px;
   }
-  /* Kontaktformular Styling */
   form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
   }
   label {
-    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
   }
-  input, textarea {
+  input[type="file"] {
     padding: 8px;
-    margin-top: 5px;
     border-radius: 4px;
     border: 1px solid #ccc;
+    margin-bottom: 15px;
   }
   button {
-    margin-top: 15px;
     padding: 10px;
     background-color: #0066cc;
     color: white;
@@ -89,11 +74,22 @@
   <p>Ihr Partner für AWS Cloud Lösungen</p>
 </header>
 
+<main>
+  <label for="file-upload">Hier kannst du einen Textfile hochladen</label>
+  <form>
+    <input type="file" id="file-upload" name="file-upload" accept=".txt">
+    <button type="submit">Upload</button>
+  </form>
+</main>
 
 <footer>
-  <p>&copy; 2025 CloudConsulting-AWS |<a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a> </p>
+  <p>&copy; 2025 CloudConsulting-AWS | <a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a> </p>
 </footer>
 
 <script>
-function toggleContent
+// Placeholder for future JavaScript functions
+</script>
+
+</body>
+</html>
 
