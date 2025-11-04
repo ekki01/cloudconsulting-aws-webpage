@@ -65,6 +65,17 @@
   button:hover {
     background-color: #005bb5;
   }
+  /* Stil für Ergebnis-Bereich */
+  #analysisResults {
+    max-width: 600px;
+    width: 100%;
+    background: #fff;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow-wrap: break-word;
+  }
   footer {
     background-color: #333;
     color: #eee;
@@ -85,19 +96,21 @@
   <h2>Hier kannst du einen Textfile hochladen</h2>
   <!-- Das Formular zum Hochladen -->
   <form action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-    
     <!-- Hier den genauen Dateinamen anpassen -->
     <input type="hidden" name="key" value="${filename}">
-    
     <!-- Damit die Datei öffentlich sichtbar ist -->
     <input type="hidden" name="x-amz-acl" value="public-read">
-    
     <!-- Datei auswählen -->
     <input type="file" name="file" accept=".txt" required>
-    
     <!-- Hochladen Button -->
     <button type="submit">Hochladen</button>
   </form>
+
+  <!-- Button zum Abrufen der Analyse-Ergebnisse -->
+  <button style="margin-top:20px;" onclick="fetchAnalysis()">Analyse-Ergebnisse anzeigen</button>
+
+  <!-- Bereich, wo die Analyse-Ergebnisse angezeigt werden -->
+  <div id="analysisResults">Hier erscheinen die Analyse-Ergebnisse</div>
 </main>
 
 <footer>
@@ -106,7 +119,13 @@
   </p>
 </footer>
 
-</body>
-</html>
+<script>
+function fetchAnalysis() {
+  // Hier URLs anpassen
+  const apiUrl = "https://xyz.execute-api.<region>.amazonaws.com/prod/analyze"; // Deine API-URL hier eintragen
 
-
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Ergebnisse darstellen
+      document.getElementById('analysis
