@@ -3,49 +3,75 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Datei-Upload in S3</title>
+<title>CloudConsulting-AWS</title>
 <style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f4f4f4;
-}
-h2 {
-  margin-top: 0;
-}
-form {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  max-width: 400px;
-}
-input[type="file"] {
-  padding: 8px;
-  width: 100%;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-button {
-  padding: 10px;
-  width: 100%;
-  background-color: #0066cc;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #005bb5;
-}
-footer {
-  margin-top: 40px;
-  background-color: #333;
-  color: #eee;
-  text-align: center;
-  padding: 10px;
-}
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background-color: #0066cc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  h1 {
+    margin: 0;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  input[type="file"] {
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  button {
+    padding: 10px;
+    width: 100%;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005bb5;
+  }
+  footer {
+    background-color: #333;
+    color: #eee;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+  }
 </style>
 </head>
 <body>
@@ -58,12 +84,12 @@ footer {
 <main>
   <h2>Hier kannst du einen Textfile hochladen</h2>
   <!-- Das Formular zum Hochladen -->
-  <form action="s3://bucketzumhochladentextifles/ordner/" method="post" enctype="multipart/form-data">
+  <form action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
     
-    <!-- Festlegen des Dateinamens (optional, kann auch dynamisch sein) -->
+    <!-- Hier den genauen Dateinamen anpassen -->
     <input type="hidden" name="key" value="${filename}">
     
-    <!-- Macht die Datei öffentlich sichtbar -->
+    <!-- Damit die Datei öffentlich sichtbar ist -->
     <input type="hidden" name="x-amz-acl" value="public-read">
     
     <!-- Datei auswählen -->
@@ -82,4 +108,5 @@ footer {
 
 </body>
 </html>
+
 
