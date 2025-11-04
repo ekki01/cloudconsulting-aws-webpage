@@ -98,8 +98,16 @@
 const apiUrl = "https://d25ov4z9ej.execute-api.eu-central-1.amazonaws.com/prod/results"; 
 
 function ladeAnalyse() {
-  fetch(apiUrl)
-    .then(res => res.json())
+  // Hier die URL der Datei
+  const s3Url = "https://buckethochladentextifles.s3.eu-central-1.amazonaws.com/ergebnisse/ergebnis_20251104_170204.json"; // Beispiel
+
+  fetch(s3Url)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Fehler beim Laden der Datei");
+      }
+      return res.json();
+    })
     .then(data => {
       document.getElementById('analysisResults').innerHTML = `
         <h3>Analyse-Ergebnisse</h3>
@@ -116,10 +124,12 @@ function ladeAnalyse() {
       document.getElementById('analysisResults').innerHTML = '<p>Fehler beim Laden!</p>';
     });
 }
+
 </script>
 
 </body>
 </html>
+
 
 
 
