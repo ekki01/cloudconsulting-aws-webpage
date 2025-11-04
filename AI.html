@@ -73,7 +73,6 @@
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    overflow-wrap: break-word;
   }
 </style>
 </head>
@@ -95,9 +94,9 @@
   </form>
 
   <!-- Button zum Abrufen der Analyse-Ergebnisse -->
-  <button style="margin-top:20px;" onclick="fetchAnalysis()">Analyse-Ergebnisse anzeigen</button>
+  <button style="margin-top:20px;" onclick="ladeAnalyse()">Analyse-Ergebnisse anzeigen</button>
 
-  <!-- Bereich, wo die Analyse-Ergebnisse angezeigt werden -->
+  <!-- Bereich für die Anzeige -->
   <div id="analysisResults">Hier erscheinen die Analyse-Ergebnisse</div>
 </main>
 
@@ -108,8 +107,8 @@
 </footer>
 
 <script>
-function fetchAnalysis() {
-  const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test"; // -> deine tatsächliche API-URL hier anpassen
+function ladeAnalyse() {
+  const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test"; // DEINE API URL anpassen!
 
   fetch(apiUrl)
     .then(res => res.json())
@@ -119,5 +118,4 @@ function fetchAnalysis() {
         <p>Sentiment: ${data.Sentiment}</p>
         <p>Positiv: ${(data.SentimentScores.Positive * 100).toFixed(2)}%</p>
         <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
-        <p>Neutral: ${(data.Sent
-
+        <p>Neutral: ${(data.Sentiment
