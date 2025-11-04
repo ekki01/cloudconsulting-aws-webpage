@@ -65,7 +65,6 @@
   button:hover {
     background-color: #005bb5;
   }
-  /* Stil für Ergebnis-Bereich */
   #analysisResults {
     max-width: 600px;
     width: 100%;
@@ -96,13 +95,9 @@
   <h2>Hier kannst du einen Textfile hochladen</h2>
   <!-- Das Formular zum Hochladen -->
   <form action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-    <!-- Hier den genauen Dateinamen anpassen -->
     <input type="hidden" name="key" value="${filename}">
-    <!-- Damit die Datei öffentlich sichtbar ist -->
     <input type="hidden" name="x-amz-acl" value="public-read">
-    <!-- Datei auswählen -->
     <input type="file" name="file" accept=".txt" required>
-    <!-- Hochladen Button -->
     <button type="submit">Hochladen</button>
   </form>
 
@@ -121,11 +116,14 @@
 
 <script>
 function fetchAnalysis() {
-  // Hier URLs anpassen
-  const apiUrl = "https://xyz.execute-api.<region>.amazonaws.com/prod/analyze"; // Deine API-URL hier eintragen
+  const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test";
 
   fetch(apiUrl)
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-      // Ergebnisse darstellen
-      document.getElementById('analysis
+      document.getElementById('analysisResults').innerHTML = `
+        <h3>Analyse-Ergebnisse</h3>
+        <p>Sentiment: ${data.Sentiment}</p>
+        <p>Positiv: ${(data.SentimentScores.Positive * 100).toFixed(2)}%</p>
+        <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
+        <p>Neutral: ${(data.SentimentScores.Neutral * 100).toFixed(2
