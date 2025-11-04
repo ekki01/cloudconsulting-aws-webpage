@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang=de>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -29,97 +29,12 @@
     flex-direction: column;
     align-items: center;
   }
-  form {
-    background: #fff;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    max-width: 400px;
-    width: 100%;
-  }
-  h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  input[type="file"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #0066cc;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  button:hover {
-    background: #005bb5;
-  }
   #analysisResults {
     max-width: 600px;
     width: 100%;
     background: #fff;
     margin-top: 20px;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <h1>Analyse aus S3</h1>
-  <p>Analyse-Ergebnisse laden und anzeigen</p>
-</header>
-
-<main>
-  <!-- Button zum laden der Analyse-Ergebnisse -->
-  <button onclick="ladeAnalyse()">Analyse aus S3 laden</button>
-
-  <!-- Bereich für die Ergebnisse -->
-  <div id="analysisResults">Hier erscheinen die Analyse-Ergebnisse</div>
-</main>
-
-<script>
-// URL deiner Ergebnisdatei im S3 (keine README- oder Index-URL, sondern direkt auf die JSON-Datei)
-const s3Url = "https://buckethochladenfilesziel.s3.eu-central-1.amazonaws.com/analysen/ergebnis_20251104_170204.json";
-
-function ladeAnalyse() {
-  fetch(s3Url)
-    .then(res => {
-      if (!res.ok) throw new Error('Fehler beim Laden der Datei');
-      return res.json();
-    })
-    .then(data => {
-      document.getElementById('analysisResults').innerHTML = `
-        <h3>Analyse-Ergebnisse</h3>
-        <p>Sentiment: ${data.Sentiment}</p>
-        <p>Positiv: ${(data.SentimentScores.Positive * 100).toFixed(2)}%</p>
-        <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
-        <p>Neutral: ${(data.SentimentScores.Neutral * 100).toFixed(2)}%</p>
-        <h4>Entities erkannt:</h4>
-        <ul>
-          ${data.Entities.length ? data.Entities.map(e => `<li>${e.Type}: ${e.Text}</li>`).join('') : '<li>Keine Entities erkannt</li>'}
-        </ul>
-      `;
-    })
-    .catch(error => {
-      console.error('Fehler:', error);
-      document.getElementById('analysisResults').innerHTML = '<p>Analyse konnten nicht geladen werden.</p>';
-    });
-}
-</script>
-
-</body>
-</html>
-
 
 
 
