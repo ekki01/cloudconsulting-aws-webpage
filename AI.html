@@ -75,13 +75,6 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     overflow-wrap: break-word;
   }
-  footer {
-    background-color: #333;
-    color: #eee;
-    text-align: center;
-    padding: 10px;
-    margin-top: auto;
-  }
 </style>
 </head>
 <body>
@@ -116,7 +109,7 @@
 
 <script>
 function fetchAnalysis() {
-  const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test";
+  const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test"; // hier deine API-URL
 
   fetch(apiUrl)
     .then(res => res.json())
@@ -126,4 +119,4 @@ function fetchAnalysis() {
         <p>Sentiment: ${data.Sentiment}</p>
         <p>Positiv: ${(data.SentimentScores.Positive * 100).toFixed(2)}%</p>
         <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
-        <p>Neutral: ${(data.SentimentScores.Neutral * 100).toFixed(2
+        <p>Neutral: ${(data.Sentiment
