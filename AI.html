@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=de>
+<html lang="de">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -48,50 +48,58 @@
 </header>
 
 <main>
-  <!-- Button zum Laden der Analyse -->
-  <button onclick="ladeAnalyse()">Analyse laden</button>
-  
+  <!-- Button zum Hochladen -->
+  <button onclick="document.querySelector('form').style.display='block';">Datei hochladen</button>
+
+  <!-- Das Formular zum Hochladen, initial versteckt -->
+  <form class="hidden" action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data" style="margin-top:20px;">
+    <input type="hidden" name="key" value="${filename}">
+    <input type="hidden" name="x-amz-acl" value="public-read" />
+    <input type="file" name="file" accept=".txt" required />
+    <button type="submit">Hochladen</button>
+  </form>
+
+  <!-- Button zum Laden der Analyse-Ergebnisse -->
+  <button style="margin-top:20px;" onclick="ladeAnalyse()">Analyse-Ergebnisse laden</button>
+
   <!-- Ergebnisbereich -->
   <div id="analysisResults">Hier erscheinen die Analyse-Ergebnisse</div>
 </main>
 
 <script>
-// URL deiner Analyse-Datei im S3-Bucket (anpassen!)
-const s3Url = "https://buckethochladentextifles.s3.eu-central-1.amazonaws.com/ergebnisse/ergebnis_20251104_170204.json"; // Beispiel
+  // Button zum Anzeigen des Formulars
+  document.querySelector('button[onclick*="document.querySelector"]').addEventListener('click', () => {
+    document.querySelector('form').classList.toggle('hidden');
+  });
 
-function ladeAnalyse() {
-  fetch(s3Url)
-    .then(res => {
-      if (!res.ok) throw new Error('Fehler beim Laden');
-      return res.json();
-    })
-    .then(data => {
-      document.getElementById('analysisResults').innerHTML = `
-        <h3>Analyse-Ergebnisse</h3>
-        <p>Sentiment: ${data.Sentiment}</p>
-        <p>Positiv: ${(data.SentimentScores.Positive * 100).toFixed(2)}%</p>
-        <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
-        <p>Neutral: ${(data.SentimentScores.Neutral * 100).toFixed(2)}%</p>
-        <h4>Entities erkannt:</h4>
-        <ul>
-          ${data.Entities.length ? data.Entities.map(e => `<li>${e.Type}: ${e.Text}</li>`).join('') : '<li>Keine Entities erkannt</li>'}
-        </ul>
-      `;
-    })
-    .catch(error => {
-      console.error('Fehler:', error);
-      document.getElementById('analysisResults').innerHTML = '<p>Analyse konnte nicht geladen werden.</p>';
-    });
-}
+  // URL deiner Analyse-Datei im S3-Bucket (anpassen!)
+  const s3ResultUrl = "https://buckethochladentextifles.s3.eu-central-1.amazonaws.com/ergebnisse/ergebnis_20251104_170204.json";
+
+  function ladeAnalyse() {
+    fetch(s3ResultUrl)
+      .then(res => {
+        if (!res.ok) throw new Error('Fehler beim Laden der Analyse');
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById('analysisResults').innerHTML = `
+          <h3>Analyse-Ergebnisse</h3>
+          <p>Sentiment: ${data.Sentiment}</p>
+          <p>Positiv: ${(data.SentimentScores.Positive * 100).toFixed(2)}%</p>
+          <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
+          <p>Neutral: ${(data.SentimentScores.Neutral * 100).toFixed(2)}%</p>
+          <h4>Entities erkannt:</h4>
+          <ul>
+            ${data.Entities.length ? data.Entities.map(e => `<li>${e.Type}: ${e.Text}</li>`).join('') : '<li>Keine Entities erkannt</li>'}
+          </ul>
+        `;
+      })
+      .catch(err => {
+        console.error('Fehler:', err);
+        document.getElementById('analysisResults').innerHTML = '<p>Fehler beim Laden!</p>';
+      });
+  }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
