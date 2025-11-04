@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CloudConsulting-AWS</title>
+<title>Analyse in AWS</title>
 <style>
   body {
     font-family: Arial, sans-serif;
+    background: #f4f4f4;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
   header {
-    background-color: #0066cc;
+    background: #0066cc;
     color: white;
     padding: 20px;
     text-align: center;
@@ -28,42 +28,37 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-    padding: 20px;
   }
   form {
     background: #fff;
     padding: 20px;
+    margin-top: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    max-width: 400px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 400px;
   }
   h2 {
     margin-top: 0;
-    margin-bottom: 10px;
   }
   input[type="file"] {
-    padding: 8px;
     width: 100%;
+    padding: 8px;
     margin-bottom: 15px;
     border-radius: 4px;
     border: 1px solid #ccc;
   }
   button {
-    padding: 10px;
     width: 100%;
-    background-color: #0066cc;
-    color: white;
+    padding: 10px;
+    background: #0066cc;
+    color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
   button:hover {
-    background-color: #005bb5;
+    background: #005bb5;
   }
   #analysisResults {
     max-width: 600px;
@@ -73,43 +68,36 @@
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow-wrap: break-word;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>CloudConsulting-AWS</h1>
-  <p>Ihr Partner für AWS Cloud Lösungen</p>
+  <h1>AWS Analyse</h1>
+  <p>Analyse-Ergebnisse anzeigen</p>
 </header>
 
 <main>
-  <h2>Hier kannst du einen Textfile hochladen</h2>
-  <!-- Das Formular zum Hochladen -->
+  <h2>Hier dein Text hochladen</h2>
   <form action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
     <input type="hidden" name="key" value="${filename}">
     <input type="hidden" name="x-amz-acl" value="public-read">
     <input type="file" name="file" accept=".txt" required>
     <button type="submit">Hochladen</button>
   </form>
-
-  <!-- Button zum Abrufen der Analyse-Ergebnisse -->
-  <button style="margin-top:20px;" onclick="ladeAnalyse()">Analyse-Ergebnisse anzeigen</button>
-
-  <!-- Bereich für die Anzeige -->
+  
+  <button style="margin-top:20px;" onclick="ladeAnalyse()">Analyse-Ergebnisse laden</button>
+  
   <div id="analysisResults">Hier erscheinen die Analyse-Ergebnisse</div>
 </main>
 
-<footer>
-  <p>&copy; 2025 CloudConsulting-AWS | 
-    <a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a>
-  </p>
-</footer>
-
 <script>
-function ladeAnalyse() {
-  const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test"; // DEINE API URL anpassen!
+// API-URL anpassen
+const apiUrl = "https://5djyjvslv5.execute-api.eu-central-1.amazonaws.com/test"; 
 
+function ladeAnalyse() {
   fetch(apiUrl)
     .then(res => res.json())
     .then(data => {
@@ -118,4 +106,19 @@ function ladeAnalyse() {
         <p>Sentiment: ${data.Sentiment}</p>
         <p>Positiv: ${(data.SentimentScores.Positive * 100).toFixed(2)}%</p>
         <p>Negativ: ${(data.SentimentScores.Negative * 100).toFixed(2)}%</p>
-        <p>Neutral: ${(data.Sentiment
+        <p>Neutral: ${(data.SentimentScores.Neutral * 100).toFixed(2)}%</p>
+        <h4>Entities erkannt:</h4>
+        <ul>${data.Entities.length ? data.Entities.map(e => `<li>${e.Type}: ${e.Text}</li>`).join('') : '<li>Keine Entities erkannt</li>'}</ul>
+      `;
+    })
+    .catch(err => {
+      console.error('Fehler:', err);
+      document.getElementById('analysisResults').innerHTML = '<p>Fehler beim Laden!</p>';
+    });
+}
+</script>
+
+</body>
+</html>
+
+
