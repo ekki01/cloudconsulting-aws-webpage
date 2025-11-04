@@ -3,59 +3,101 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Datei-Upload in S3</title>
+<title>CloudConsulting-AWS</title>
 <style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background-color: #f4f4f4;
-}
-h2 {
-  margin-top: 0;
-}
-form {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-}
-input[type="file"] {
-  margin-bottom: 10px;
-  width: 100%;
-}
-button {
-  padding: 10px;
-  background-color: #0066cc;
-  border: none;
-  color: white;
-  border-radius: 4px;
-  width: 100%;
-}
-button:hover {
-  background-color: #005bb5;
-}
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background-color: #0066cc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  h1 {
+    margin: 0;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  input[type="file"] {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  button {
+    padding: 10px;
+    background-color: #0066cc;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+  }
+  button:hover {
+    background-color: #005bb5;
+  }
+  footer {
+    background-color: #333;
+    color: #eee;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+  }
 </style>
 </head>
 <body>
 
-<h2>Hier kannst du einen Textfile hochladen</h2>
-<form action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-  
-  <!-- Name des hochgeladenen Files auf S3 -->
-  <input type="hidden" name="key" value="${filename}">
+<header>
+  <h1>CloudConsulting-AWS</h1>
+  <p>Ihr Partner für AWS Cloud Lösungen</p>
+</header>
 
-  <!-- Bucket-Policy erfordert auch die Policy-Parameter -->
-  <!-- Optional: Spezifizieren Sie die Policy-Parameter, z.B. Einschränkungen -->
+<main>
+  <h2>Hier kannst du einen Textfile hochladen</h2>
+  <form action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+    <!-- Hier kannst du einen festen Dateinamen eingeben, oder dynamisch setzen -->
+    <input type="hidden" name="key" value="${filename}">
+    <!-- Optional: Zugriff auf öffentliches Bucket -->
+    <input type="hidden" name="acl" value="public-read">
+    <!-- Datei auswählen -->
+    <input type="file" name="file" accept=".txt" required>
+    <!-- Submit Button -->
+    <button type="submit">Hochladen</button>
+  </form>
+</main>
 
-  <!-- Dateiname im Upload -->
-  <input type="hidden" name="acl" value="public-read">
-
-  <!-- Erstellen Sie ein Policy-Dokument. Für einfache Uploads, lassen Sie diesen weg. -->
-  <!-- Für einfache Zwecke, nur Datei auswählen -->
-  
-  <input type="file" name="file" accept=".txt" required>
-  <button type="submit">Hochladen</button>
-</form>
+<footer>
+  <p>&copy; 2025 CloudConsulting-AWS | <a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a></p>
+</footer>
 
 </body>
 </html>
