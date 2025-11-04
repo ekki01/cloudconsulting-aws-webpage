@@ -58,7 +58,7 @@ footer {
 <main>
   <h2>Hier kannst du einen Textfile hochladen</h2>
   <!-- Das Formular zum Hochladen -->
-  <form action="https://bucketzumhochladentextifles.s3.eu-central-1.amazonaws.com/ordner/" method="post" enctype="multipart/form-data">
+  <form action="s3://bucketzumhochladentextifles/ordner/" method="post" enctype="multipart/form-data">
     
     <!-- Festlegen des Dateinamens (optional, kann auch dynamisch sein) -->
     <input type="hidden" name="key" value="${filename}">
@@ -82,3 +82,4 @@ footer {
 
 </body>
 </html>
+
