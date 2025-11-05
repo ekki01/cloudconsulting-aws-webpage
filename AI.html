@@ -89,6 +89,41 @@
   <p>Ihr Partner für AWS Cloud Lösungen</p>
 </header>
 
+  
+<button id="uploadButton">Hier Ergebnisse anschauen</button>
+<div id="result"></div>
+
+<script>
+  document.getElementById('uploadButton').addEventListener('click', async () => {
+    const bucketName = 'buckethochladenfilesziel';
+    const fileKey = 'example-file.txt'; // Pfad/Name der Datei im Bucket
+    const s3Url = `https://${bucketName}.s3.amazonaws.com/${fileKey}`;
+
+    try {
+      // Datei aus dem S3 Bucket holen
+      const response = await fetch(s3Url);
+      if (!response.ok) throw new Error('Datei konnte nicht geladen werden');
+
+      const blob = await response.blob();
+
+      // Datei in den Browser anzeigen
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.textContent = 'Hier sind die Ergebnisse';
+      link.target = '_blank';
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = ''; // vorherige Inhalte entfernen
+      resultDiv.appendChild(link);
+    } catch (error) {
+      document.getElementById('result').textContent = 'Fehler beim Laden der Datei.';
+      console.error(error);
+    }
+  });
+</script>
+
+
 
 <footer>
   <p>&copy; 2025 CloudConsulting-AWS |<a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a> </p>
@@ -96,3 +131,4 @@
 
 <script>
 function toggleContent
+
