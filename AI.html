@@ -53,6 +53,7 @@
     border-radius: 4px;
     border: 1px solid #ccc;
   }
+  /* Styling für den ursprünglichen Upload-Button */
   button {
     padding: 10px;
     width: 100%;
@@ -61,9 +62,15 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.2s ease;
   }
   button:hover {
     background-color: #005bb5;
+  }
+  /* Zusätzliche Klasse für den klickeffekt */
+  .klick {
+    background-color: #004999 !important;
+    transform: scale(0.98);
   }
   footer {
     background-color: #333;
@@ -85,18 +92,14 @@
   <h2>Hier kannst du einen Textfile hochladen</h2>
   <!-- Das Formular zum Hochladen -->
   <form action="https://bucketzumhochladentextifles.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-    
     <!-- Hier den genauen Dateinamen anpassen -->
     <input type="hidden" name="key" value="${filename}">
-    
     <!-- Damit die Datei öffentlich sichtbar ist -->
     <input type="hidden" name="x-amz-acl" value="public-read">
-    
     <!-- Datei auswählen -->
     <input type="file" name="file" accept=".txt" required>
-    
-    <!-- Hochladen Button -->
-    <button type="submit">Hochladen</button>
+    <!-- Hochladen Button mit spezifischer Klasse -->
+    <button type="submit" id="hochladenBtn">Hochladen</button>
   </form>
 </main>
 
@@ -105,6 +108,27 @@
     <a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a>
   </p>
 </footer>
+
+<!-- Audio für Klickgeräusch -->
+<audio id="klicksound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+
+<script>
+  const button = document.getElementById('hochladenBtn');
+  const sound = document.getElementById('klicksound');
+
+  button.addEventListener('click', function() {
+    // Optischer Effekt
+    this.classList.add('klick');
+
+    // Klickgeräusch abspielen
+    sound.play();
+
+    // Nach 200ms den Effekt wieder entfernen
+    setTimeout(() => {
+      this.classList.remove('klick');
+    }, 200);
+  });
+</script>
 
 </body>
 </html>
