@@ -148,19 +148,26 @@
 
 <section>
   <h2>Kontakt</h2>
-  <form action="mailto:deine.email@beispiel.com" method="post" enctype="text/plain">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required />
-
-    <label for="email">E-Mail:</label>
-    <input type="email" id="email" name="email" required />
-
-    <label for="message">Nachricht:</label>
-    <textarea id="message" name="message" rows="4" required></textarea>
-
-    <button type="submit">Absenden</button>
-  </form>
+<!-- modify this form HTML and place wherever you want your form -->
+<form
+  action="https://formspree.io/f/xblpnjye"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
 </section>
+
+
+ 
 
 <footer>
   <p>&copy; 2025 CloudConsulting-AWS |<a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a> </p>
@@ -168,4 +175,5 @@
 
 <script>
 function toggleContent
+
 
