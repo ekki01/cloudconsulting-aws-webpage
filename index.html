@@ -22,7 +22,6 @@
   }
   .container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
     padding: 20px;
   }
@@ -34,40 +33,36 @@
     cursor: pointer;
     border-radius: 8px;
     transition: transform 0.2s;
-    margin-bottom: 20px;
   }
   .card:hover {
     transform: scale(1.05);
   }
-  /* Einheitliches Layout für die Content-Abschnitte innerhalb der Kästen */
-  .card-layout {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  .content {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
   }
-  .card-layout img {
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-    border-radius: 8px;
-  }
-  /* Kontaktformular Styling */
   section {
     max-width: 800px;
     margin: auto;
-    padding: 20px;
   }
+  footer {
+    background-color: #333;
+    color: #eee;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  /* Kontaktformular Styling */
   form {
     display: flex;
     flex-direction: column;
   }
-  form label {
+  label {
     margin-top: 10px;
   }
-  input[type="email"], textarea {
+  input, textarea {
     padding: 8px;
     margin-top: 5px;
     border-radius: 4px;
@@ -85,13 +80,6 @@
   button:hover {
     background-color: #005bb5;
   }
-  footer {
-    background-color: #333;
-    color: #eee;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-  }
 </style>
 </head>
 <body>
@@ -101,39 +89,35 @@
   <p>Ihr Partner für AWS Cloud Lösungen</p>
 </header>
 
-<!-- Container für die Kästen -->
-<div class="container">
 
-  <!-- Kasten 1: Solution Architect, Format wie die anderen -->
+<!-- Dies ist die KAchel für Solution Architekt -->
+<div class="container">
   <div class="card" onclick="window.open('Architect.html', '_self')">
     <h3>AWS Solution Architect</h3>
-    <div class="card-layout">
-      <img src="webpage\Bilder\cer Arch.jpg" alt="Bildbeschreibung">
-      <div>
-        <h3>Gute Planung</h3>
-        <p>Als Solution Architect plane und implementiere ich skalierbare und sichere AWS Cloud-Infrastrukturen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
-      </div>
+<div style="display: flex; align-items: center; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+  <img src="webpage\Bilder\cer Arch.jpg " alt="Bildbeschreibung" style="width: 150px; height: auto; margin-right: 20px; border-radius: 8px;">
+  <div>
+    <h3>Gute Planung</h3>
+    <p>Als Solution Architect plane und implementiere ich skalierbare und sichere AWS Cloud-Infrastrukturen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
+  </div>
+</div>
+
+
+    <div id="content2" class="content">
+      <p>Als Solution Architect plane und implementiere ich skalierbare und sichere AWS Cloud-Infrastrukturen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
     </div>
   </div>
 
-  <!-- Kasten 2 -->
+<!-- Dies ist die KAchel für Designer -->
   <div class="card" onclick="window.open('Designer.html', '_self')">
     <h3>AWS Solution Designer</h3>
-    <div class="card-layout">
-      <img src="webpage\Bilder\cert Dev.jpg" alt="Bildbeschreibung">
-      <div>
-        <h3>Solide umgesetzt</h3>
-        <p>Ich konzipiere innovative AWS-Lösungen, die Effizienz und Kostenoptimierung maximieren, inklusive Architektur-Design und Ressourcenplanung.</p>
-      </div>
-    </div>
+<div style="display: flex; align-items: center; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+  <img src="webpage\Bilder\cert Dev.jpg " alt="Bildbeschreibung" style="width: 150px; height: auto; margin-right: 20px; border-radius: 8px;">
+  <div>
+    <h3>Solide umgesetzt</h3>
+    <p>Ich konzipiere innovative AWS-Lösungen, die Effizienz und Kostenoptimierung maximieren, inklusive Architektur-Design und Ressourcenplanung.</p>
   </div>
-
-  <!-- Kasten 3 -->
-  <div class="card" onclick="window.open('AI.html', '_self')">
-    <h3>AWS Artificial Intelligence</h3>
-    <div class="card-layout">
-      <img src="webpage\Bilder\cer Arch.jpg" alt="
-
+</div>
 
 
     <div id="content2" class="content">
