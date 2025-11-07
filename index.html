@@ -22,6 +22,7 @@
   }
   .container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     padding: 20px;
   }
@@ -33,36 +34,45 @@
     cursor: pointer;
     border-radius: 8px;
     transition: transform 0.2s;
+    margin-bottom: 20px;
   }
   .card:hover {
     transform: scale(1.05);
   }
-  .content {
-    display: none;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #ccc;
+  /* Gemeinsames Layout für die Kästen */
+  .card-layout {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
+  /* Bildstil für alle Bilder in den Kästen */
+  .img-style {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 8px;
+  }
+  /* Kontaktformular Styling */
   section {
     max-width: 800px;
     margin: auto;
+    padding: 20px;
   }
-  footer {
-    background-color: #333;
-    color: #eee;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-  }
-  /* Kontaktformular Styling */
   form {
     display: flex;
     flex-direction: column;
   }
-  label {
+  form label {
     margin-top: 10px;
   }
-  input, textarea {
+  input[type="email"], textarea {
     padding: 8px;
     margin-top: 5px;
     border-radius: 4px;
@@ -80,6 +90,14 @@
   button:hover {
     background-color: #005bb5;
   }
+  /* Footer Styling */
+  footer {
+    background-color: #333;
+    color: #eee;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+  }
 </style>
 </head>
 <body>
@@ -89,116 +107,33 @@
   <p>Ihr Partner für AWS Cloud Lösungen</p>
 </header>
 
-
-<!-- Dies ist die KAchel für Solution Architekt -->
+<!-- Kästen Container -->
 <div class="container">
+
+  <!-- Kasten 1: Solution Architect -->
   <div class="card" onclick="window.open('Architect.html', '_self')">
     <h3>AWS Solution Architect</h3>
-<div style="display: flex; align-items: center; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
-  <img src="webpage\Bilder\cer Arch.jpg " alt="Bildbeschreibung" style="width: 150px; height: auto; margin-right: 20px; border-radius: 8px;">
-  <div>
-    <h3>Gute Planung</h3>
-    <p>Als Solution Architect plane und implementiere ich skalierbare und sichere AWS Cloud-Infrastrukturen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
-  </div>
-</div>
-
-
-    <div id="content2" class="content">
-      <p>Als Solution Architect plane und implementiere ich skalierbare und sichere AWS Cloud-Infrastrukturen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
+    <div class="card-layout">
+      <img src="webpage/Bilder/cer Arch.jpg" alt="Bildbeschreibung" class="img-style">
+      <div>
+        <h3>Gute Planung</h3>
+        <p>Als Solution Architect plane und implementiere ich skalierbare und sichere AWS Cloud-Infrastrukturen, die exakt auf Ihre Geschäftsanforderungen zugeschnitten sind.</p>
+      </div>
     </div>
   </div>
 
-<!-- Dies ist die KAchel für Designer -->
+  <!-- Kasten 2: Solution Designer -->
   <div class="card" onclick="window.open('Designer.html', '_self')">
     <h3>AWS Solution Designer</h3>
-<div style="display: flex; align-items: center; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
-  <img src="webpage\Bilder\cert Dev.jpg " alt="Bildbeschreibung" style="width: 150px; height: auto; margin-right: 20px; border-radius: 8px;">
-  <div>
-    <h3>Solide umgesetzt</h3>
-    <p>Ich konzipiere innovative AWS-Lösungen, die Effizienz und Kostenoptimierung maximieren, inklusive Architektur-Design und Ressourcenplanung.</p>
-  </div>
-</div>
-
-
-    <div id="content2" class="content">
-      <p>Ich konzipiere innovative AWS-Lösungen, die Effizienz und Kostenoptimierung maximieren, inklusive Architektur-Design und Ressourcenplanung.</p>
+    <div class="card-layout">
+      <img src="webpage/Bilder/cert Dev.jpg" alt="Bildbeschreibung" class="img-style">
+      <div>
+        <h3>Solide umgesetzt</h3>
+        <p>Ich konzipiere innovative AWS-Lösungen, die Effizienz und Kostenoptimierung maximieren, inklusive Architektur-Design und Ressourcenplanung.</p>
+      </div>
     </div>
   </div>
 
-<!-- Dies ist die KAchel für AI-->
+  <!-- Kasten 3: Artificial Intelligence -->
   <div class="card" onclick="window.open('AI.html', '_self')">
-    <h3>AWS Artificial Intelligence</h3>
-<div style="display: flex; align-items: center; background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
-  <img src="webpage\Bilder\cer Arch.jpg " alt="Bildbeschreibung" style="width: 150px; height: auto; margin-right: 20px; border-radius: 8px;">
-  <div>
-    <h3>Auch mit KI</h3>
-    <p>Ich Implementiere KI-basierte Lösungen auf AWS, inklusive Machine Learning, Chatbots und Data Analytics für Ihre geschäftlichen Anforderungen.</p>
-  </div>
-</div>
-
-   <div id="content3" class="content">
-      <p>Implementiere KI-basierte Lösungen auf AWS, inklusive Machine Learning, Chatbots und Data Analytics für Ihre geschäftlichen Anforderungen.</p>
-    </div>
-  </div>
-</div>
-
-   
-
-<section>
-  <h2>Kontakt</h2>
-<!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/xblpnjye"
-  method="POST"
->
-  <style>
-  /* Beide Labels und Eingabefelder untereinander anordnen */
-  form label {
-    display: block;
-    margin-bottom: 15px; /* Abstand zwischen den Feldern */
-  }
-
-  /* Eingabefelder und Textarea größer machen */
-  input[type="email"], textarea {
-    width: 100%; /* Füllt den Container aus */
-    min-height: 40px; /* Mindesthöhe */
-    font-size: 16px; /* Schriftgröße vergrößern */
-    padding: 8px; /* Innenabstand */
-    box-sizing: border-box; /* Padding in Breite einbeziehen */
-  }
-
-  /* Textarea größer machen (zusätzliche Zeilenhöhe) */
-  textarea {
-    min-height: 100px; /* Höhe des Textarea-Felds */
-  }
-</style>
-
-<form>
-  <label>
-    Your email:
-    <input type="email" name="email" />
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <button type="submit">Send</button>
-</form>
-</section>
-
-
-
- 
-
-<footer>
-  <p>&copy; 2025 CloudConsulting-AWS |<a href="impressum.html" style="color:#eee;" onclick="window.open('impressum.html', 'Impressum', 'width=400,height=300'); return false;">Impressum</a> </p>
-</footer>
-
-<script>
-function toggleContent
-
-
-
-
-
-
+    <h3>AWS
