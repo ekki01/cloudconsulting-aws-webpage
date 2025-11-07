@@ -153,18 +153,41 @@
   action="https://formspree.io/f/xblpnjye"
   method="POST"
 >
+  <style>
+  /* Beide Labels und Eingabefelder untereinander anordnen */
+  form label {
+    display: block;
+    margin-bottom: 15px; /* Abstand zwischen den Feldern */
+  }
+
+  /* Eingabefelder und Textarea größer machen */
+  input[type="email"], textarea {
+    width: 100%; /* Füllt den Container aus */
+    min-height: 40px; /* Mindesthöhe */
+    font-size: 16px; /* Schriftgröße vergrößern */
+    padding: 8px; /* Innenabstand */
+    box-sizing: border-box; /* Padding in Breite einbeziehen */
+  }
+
+  /* Textarea größer machen (zusätzliche Zeilenhöhe) */
+  textarea {
+    min-height: 100px; /* Höhe des Textarea-Felds */
+  }
+</style>
+
+<form>
   <label>
     Your email:
-    <input type="email" name="email">
+    <input type="email" name="email" />
   </label>
   <label>
     Your message:
     <textarea name="message"></textarea>
   </label>
-  <!-- your other form fields go here -->
   <button type="submit">Send</button>
 </form>
 </section>
+
 
 
  
@@ -175,5 +198,6 @@
 
 <script>
 function toggleContent
+
 
 
