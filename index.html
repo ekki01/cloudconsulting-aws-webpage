@@ -154,6 +154,8 @@
 
 <section>
   <h2>Kontakt</h2>
+<!--
+  
 <!-- modify this form HTML and place wherever you want your form -->
 <form
   action="https://formspree.io/f/xblpnjye"
@@ -192,6 +194,24 @@
   </label>
   <button type="submit">Send</button>
 </form>
+
+-->
+
+<form action="send_email.php" method="post">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" required><br><br>
+  
+  <label for="email">Ihre E-Mail:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+  
+  <label for="message">Nachricht:</label><br>
+  <textarea id="message" name="message" rows="6" required></textarea><br><br>
+  
+  <input type="submit" value="Absenden">
+</form>
+
+
+  
 </section>
 
 
@@ -204,6 +224,7 @@
 
 <script>
 function toggleContent
+
 
 
 
